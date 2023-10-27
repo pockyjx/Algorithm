@@ -1,5 +1,4 @@
 import java.io.*;
-import java.math.BigInteger;
 public class Main {
 	
 	public static void main(String[] args) throws IOException {
@@ -9,10 +8,22 @@ public class Main {
 		
 		int t = Integer.parseInt(br.readLine());
 		for(int i=0;i<t;i++) {
-			BigInteger num = new BigInteger(br.readLine());
+			long num = Long.parseLong(br.readLine());
+			if(num <= 2) {
+				sb.append(2).append("\n"); continue;
+			}
 			
-			if(num.isProbablePrime(10)) sb.append(num + "\n");
-			else sb.append(num.nextProbablePrime() + "\n");
+			boolean isPrime = false;
+			while(!isPrime) {
+				isPrime = true;
+				for(long j=2;j<=Math.sqrt(num);j++) {
+					if(num % j == 0) {
+						isPrime = false; break;
+					}
+				}
+				if(!isPrime) num++;
+				else sb.append(num).append("\n");
+			}
 		}
 		bw.write(sb + "");
 		

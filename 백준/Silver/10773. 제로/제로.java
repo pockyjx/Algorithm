@@ -1,22 +1,23 @@
 import java.io.*;
-import java.util.*;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		Stack<Integer> stack = new Stack<>();
 		int k = Integer.parseInt(br.readLine());
-		for(int i=0;i<k;i++) {
-			int n = Integer.parseInt(br.readLine());
-			
-			if(n == 0) stack.pop();
-			else stack.push(n);
-		}
+		int[] arr = new int[k];
 		
-		int sum = 0; int size = stack.size();
-		for(int i=0;i<size;i++) {
-			sum += stack.pop();
+		int idx = 0;
+		for(int i=0;i<k;i++) {
+			int num = Integer.parseInt(br.readLine());
+			
+			if(num == 0) arr[--idx] = 0;
+			else arr[idx++] = num;
+		}
+
+		int sum = 0;
+		for(int i=0;i<idx;i++) {
+			sum += arr[i];
 		}
 		bw.write(sum + "");
 		

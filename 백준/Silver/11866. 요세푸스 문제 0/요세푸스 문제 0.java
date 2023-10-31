@@ -9,23 +9,18 @@ public class Main {
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
 		
-		Queue<Integer> q = new LinkedList<>();
+		List<Integer> list = new LinkedList<>();
 		for(int i=1;i<=n;i++) {
-			q.offer(i);
+			list.add(i);
 		}
 		
 		StringBuilder sb = new StringBuilder("<");
-		while(true) {
-			
-			if(q.size() == 1) {
-				sb.append(q.poll()).append(">"); break;
-			}
-			
-			for(int i=0;i<k-1;i++) {
-				q.offer(q.poll());
-			}
-			sb.append(q.poll()).append(", ");
+		int idx = 0;
+		while(list.size() > 1) {
+			idx = (idx + (k-1)) % list.size();
+			sb.append(list.remove(idx)).append(", ");
 		}
+		sb.append(list.remove(0)).append(">");
 		bw.write(sb + "");
 		
 		br.close();

@@ -5,19 +5,17 @@ public class Main {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
-		Deque<Integer> d = new ArrayDeque<>();
+		Deque<Balloon> d = new ArrayDeque<>();
 		int n = Integer.parseInt(br.readLine());
-		int[] arr = new int[n+1];
 		
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		for(int i=1;i<=n;i++) {
-			d.offer(i);
-			arr[i] = Integer.parseInt(st.nextToken());
+			d.offer(new Balloon(i, Integer.parseInt(st.nextToken())));
 		}
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(1).append(" "); // 1번 펑
-		int m = arr[d.poll()]; // 풍선 안 숫자
+		int m = d.poll().num; // 풍선 안 숫자
 		
 		while(d.size() > 1) {
 			if(m > 0) { // 오른쪽
@@ -25,22 +23,33 @@ public class Main {
 					d.offerLast(d.pollFirst());
 				}
 				
-				sb.append(d.peekFirst()).append(" ");
-				m = arr[d.pollFirst()];
+				sb.append(d.peekFirst().idx).append(" ");
+				m = d.pollFirst().num;
 				
 			} else { // 왼쪽
 				for(int i=0;i<(-1*m)-1;i++) {
 					d.offerFirst(d.pollLast());
 				}
 				
-				sb.append(d.peekLast()).append(" ");
-				m = arr[d.pollLast()];
+				sb.append(d.peekLast().idx).append(" ");
+				m = d.pollLast().num;
 			}
 		}
-		sb.append(d.poll()); // 마지막 펑
+		sb.append(d.poll().idx); // 마지막 펑
 		bw.write(sb + "");
 		
 		br.close();
 		bw.close();
+	}
+}
+
+class Balloon {
+	int idx;
+	int num;
+	
+	public Balloon(int idx, int num) {
+		super();
+		this.idx = idx;
+		this.num = num;
 	}
 }

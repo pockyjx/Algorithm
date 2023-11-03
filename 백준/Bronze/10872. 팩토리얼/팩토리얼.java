@@ -5,18 +5,14 @@ public class Main {
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		
 		int n = Integer.parseInt(br.readLine());
-		int result = 1;
+		bw.write(combination(n) + "");
 		
-		if(n == 0) {
-			bw.write(result + ""); bw.close();
-			return;
-		}
-		
-		for(int i=2;i<=n;i++)
-			result *= i;
-		bw.write(result + "");
-
 		br.close();
 		bw.close();
 	}
-}	
+	
+	static int combination(int n) {
+		if(n <= 1) return 1;
+		return n * combination(n-1);
+	}
+}

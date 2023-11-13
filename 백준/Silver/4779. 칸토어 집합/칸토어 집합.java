@@ -1,7 +1,8 @@
 import java.io.*;
+import java.util.*;
 public class Main {
 	
-	static int n;
+	static char[] arr;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -10,15 +11,13 @@ public class Main {
 		
 		String input;
 		while((input = br.readLine()) != null && !input.isEmpty()) {
-			n = Integer.parseInt(input);
-			int pow = (int)Math.pow(3, n);
+			int n = Integer.parseInt(input);
+			arr = new char[(int)Math.pow(3, n)];
+			Arrays.fill(arr, '-');
 			
-			boolean[] arr = new boolean[pow];
-			cantor(arr, 0, pow-1, pow/3);
-			
-			for(int i=0;i<pow;i++) {
-				if(!arr[i]) sb.append('-');
-				else sb.append(' ');
+			cantor(0, arr.length-1);
+			for(int i=0;i<arr.length;i++) {
+				sb.append(arr[i]);
 			}
 			sb.append("\n");
 		}
@@ -28,18 +27,18 @@ public class Main {
 		bw.close();
 	}
 	
-	static void cantor(boolean[] arr, int start, int end, int mid) {
-		if(mid < 1) return;
+	static void cantor(int start, int end) {
+		if(start >= end) return;
 		
+		int mid = (end - start + 1) / 3;
 		int p = start + mid;
 		int q = end - mid;
 		
 		for(int i=p;i<=q;i++) {
-			arr[i] = true;
+			arr[i] = ' ';
 		}
-		mid = (end - start + 1) / 3; 
 		
-		cantor(arr, start, p-1, mid); // 왼쪽
-		cantor(arr, q+1, end, mid); // 오른쪽
+		cantor(start, p-1);
+		cantor(q+1, end);
 	}
 }

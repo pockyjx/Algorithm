@@ -4,10 +4,7 @@ class Solution {
         
         for(int i=1;i<food.length;i++) {
             int n = food[i] / 2;
-            
-            for(int j=0;j<n;j++) {
-                sb.append(i);
-            }
+            sb.append(String.valueOf(i).repeat(n));
         }
 
         String answer = sb.toString();

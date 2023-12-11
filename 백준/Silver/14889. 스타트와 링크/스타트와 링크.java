@@ -42,6 +42,11 @@ public class Main {
 		}
 		
 		min = Math.min(Math.abs(start-link), min);
+		
+		if(min == 0) {
+			System.out.println(min);
+			System.exit(0);
+		}
 	
 	}
 	 

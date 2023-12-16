@@ -5,11 +5,11 @@ class Solution {
         char[] arr = String.valueOf(n).toCharArray();
         Arrays.sort(arr);
         
-        String result = "";
-        for(int i=arr.length-1;i>=0;i--) {
-            result += arr[i];
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<arr.length;i++) {
+            sb.append(arr[i]);
         }
         
-        return Long.parseLong(result);
+        return Long.parseLong(sb.reverse().toString());
     }
 }

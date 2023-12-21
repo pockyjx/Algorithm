@@ -15,6 +15,4 @@ class Solution {
         
         return answer;
     }
-    
-
 }

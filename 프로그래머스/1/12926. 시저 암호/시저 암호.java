@@ -2,18 +2,16 @@ class Solution {
     public String solution(String s, int n) {
         
         String answer = "";
-        char[] arr = s.toCharArray();
-        
-        for(int i=0;i<arr.length;i++) {
-            if(arr[i] == ' ') {
-                answer += " "; continue;
+        for(int i=0;i<s.length();i++) {
+            char ch = s.charAt(i);
+            
+            if(Character.isUpperCase(ch)) {
+                ch = (char) ((ch - 'A' + n) % 26 + 'A');
+            } else if(Character.isLowerCase(ch)) {
+                ch = (char) ((ch - 'a' + n) % 26 + 'a');
             }
             
-            int ch = arr[i] + n;
-            if(ch > 90 && arr[i] <= 90) ch = 65 + (ch-91);
-            else if(ch > 122) ch = (97 + (ch-123));
-            
-            answer += String.valueOf((char)ch);
+            answer += ch;
         }
         return answer;
     }

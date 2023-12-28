@@ -3,25 +3,11 @@ class Solution {
         String[] answer = new String[n];
         
         for(int i=0;i<n;i++) {
-            String bin1 = toBinary(arr1[i], n);
-            String bin2 = toBinary(arr2[i], n);
-            
-            String tmp = "";
-            for(int j=0;j<n;j++) {
-                if(bin1.charAt(j) == '1' || bin2.charAt(j) == '1') {
-                    tmp += "#";
-                } else {
-                    tmp += " ";
-                }
-            }
-            answer[i] = tmp;
-        }
+            answer[i] = Integer.toBinaryString(arr1[i] | arr2[i]);
+            answer[i] = String.format("%"+n+"s", answer[i]);
+            answer[i] = answer[i].replace('0', ' ').replace('1', '#');
 
+        }
         return answer;
-    }
-    
-    static String toBinary(int num, int len) {
-        String binary = Integer.toBinaryString(num);
-        return String.format("%"+len+"s", binary).replace(' ', '0');
     }
 }

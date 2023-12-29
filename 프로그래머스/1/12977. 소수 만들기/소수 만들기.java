@@ -23,5 +23,6 @@ class Solution {
             dfs(depth+1, i+1, nums);
             sum -= nums[i];
         }
+        return;
     }
 }

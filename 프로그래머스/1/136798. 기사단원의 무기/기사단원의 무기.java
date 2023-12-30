@@ -1,23 +1,21 @@
 class Solution {
     public int solution(int number, int limit, int power) {
-        int answer = 0;
         
-        for(int i=1;i<=number;i++) {
-            int cnt = 0;
-            
-            for(int j=1;j<=(int)Math.sqrt(i);j++) {
-                if(i % j == 0) {
-                    cnt += 2;
-                    if(j == i / j) cnt--;
-                }
+        int[] count = new int[number + 1];    
+        for (int i = 1; i <= number; i++) {
+            for (int j = 1; j <= number / i; j++) {
+                count[i * j]++;
             }
-            
-            System.out.println(cnt);
-            
-            if(cnt > limit) answer += power;
-            else answer += cnt;
         }
-
+        
+        int answer = 0;
+        for (int i = 1; i <= number; i++) {
+            if (count[i] > limit) {
+                answer += power;
+            } else {
+                answer += count[i];
+            }
+        }
         return answer;
     }
 }

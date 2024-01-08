@@ -8,16 +8,10 @@ class Solution {
         answer = answer.replaceAll("[^a-z0-9._-]", "");
         
         // 3단계
-        answer = answer.replaceAll("\\.{2,}", ".");
+        answer = answer.replaceAll("[.]{2,}", ".");
         
         // 4단계
-        if(!answer.isEmpty() && answer.charAt(0) == '.') 
-            answer = answer.substring(1);
-        
-        if(!answer.isEmpty() && answer.charAt(answer.length()-1) == '.') {
-            int idx = answer.lastIndexOf(".");
-            answer = answer.substring(0, answer.length()-1);
-        }
+        answer = answer.replaceAll("^[.]|[.]$", "");
         
         // 5단계
         if(answer.isEmpty()) 
@@ -26,11 +20,7 @@ class Solution {
         // 6단계
         if(answer.length() > 15) {
             answer = answer.substring(0, 15);
-            
-            if(!answer.isEmpty() && answer.charAt(14) == '.') {
-                int idx = answer.lastIndexOf(".");
-                answer = answer.substring(0, answer.length()-1);
-            }
+            answer = answer.replaceAll("[.]$", "");
         }
         
         // 7단계

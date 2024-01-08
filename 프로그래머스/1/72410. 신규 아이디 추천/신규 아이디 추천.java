@@ -5,19 +5,10 @@ class Solution {
         String answer = new_id.toLowerCase();
         
         // 2단계
-        for(int i=0;i<answer.length();i++) {
-            char ch = answer.charAt(i);
-            
-            if((ch >= 'a' && ch <= 'z') ||
-                (ch >= '0' && ch <= '9') ||
-                ch == '.' || ch == '-' || ch == '_') continue;
-            
-            answer = answer.replace(ch, ' ');
-        }
-        answer = answer.replace(" ", "");
+        answer = answer.replaceAll("[^a-z0-9._-]", "");
         
         // 3단계
-        answer = answer.replaceAll("\\.+", ".");
+        answer = answer.replaceAll("\\.{2,}", ".");
         
         // 4단계
         if(!answer.isEmpty() && answer.charAt(0) == '.') 

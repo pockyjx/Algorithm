@@ -3,25 +3,18 @@ class Solution {
     public int solution(int[] elements) {
         
         Set<Integer> set = new HashSet<>();
-        for(int i=0;i<elements.length;i++) {
-            for(int j=1;j<=elements.length;j++) {
-                set.add(cal(i, j, elements));
+        
+        for (int i=1; i<=elements.length; i++) {
+            for (int j=0; j<elements.length; j++) {
+                int sum = 0;
+                
+                for (int k=j; k<j+i; k++) {
+                    sum += elements[k%elements.length];
+                }
+                set.add(sum);
             }
         }
         
         return set.size();
-    }
-    
-    static int cal(int idx, int len, int[] elements) {
-        int sum = elements[idx];
-        int arrLen = elements.length;
-        
-        for(int i=1;i<len;i++) {
-            int tmp = (idx + i >= arrLen) ? (idx + i) % arrLen : idx + i;
-            sum += elements[tmp];
-        }
-        
-        return sum;
-    }
-    
+    }    
 }

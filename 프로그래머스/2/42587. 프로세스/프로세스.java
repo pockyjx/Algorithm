@@ -2,28 +2,26 @@ import java.util.*;
 class Solution {
     public int solution(int[] priorities, int location) {
         
-        priorities[location] += 10;
         Queue<Integer> q = new LinkedList<>();
         for(int i : priorities) {
             q.offer(i);
         }   
         
-        int answer = 0;
+        Arrays.sort(priorities);
+        System.out.println(Arrays.toString(priorities));
+        
+        int answer =  0;
+        int len = priorities.length - 1;
+        
         while(!q.isEmpty()) {
-
-            int max = 0;          
-            for(int i : q) {
-                int tmp = (i > 10) ? i - 10 : i;
-                max = Math.max(max, tmp);
-            }    
-            
-            for(int i=0;i<q.size();i++) {
-                if(q.peek() - 10 == max || q.peek() == max) break;
-                q.offer(q.poll());
+            int tmp = q.poll();
+            if(tmp == priorities[len - answer]) {
+                answer++; location--;
+                if(location < 0) break;
+            } else {
+                q.offer(tmp); location--;
+                if(location < 0) location = q.size() - 1;
             }
-            
-            answer++;
-            if(q.poll() > 10) break;
         }
         
         return answer;

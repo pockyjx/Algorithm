@@ -8,8 +8,8 @@ class Solution {
         str2 = str2.toLowerCase().replaceAll("[^a-z]", " ");
         List<String> s2 = set(str2);
         
-        Collections.sort(s1);
-        Collections.sort(s2);
+        //Collections.sort(s1);
+        //Collections.sort(s2);
         
         List<String> union = new ArrayList<>(); // 합
         List<String> inter = new ArrayList<>(); // 교

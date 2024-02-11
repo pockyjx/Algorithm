@@ -22,8 +22,6 @@ class Solution {
             fee.put(s, fee.getOrDefault(s, 0) + (getTime("23:59") - record.get(s))); 
         }
         
-        System.out.println(fee);
-        
         int basicMin = fees[0]; int basicCost = fees[1];
         int unitMin = fees[2]; int unitCost = fees[3];
         

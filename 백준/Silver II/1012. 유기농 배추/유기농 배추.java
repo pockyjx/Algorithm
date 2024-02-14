@@ -39,7 +39,6 @@ public class Main {
                         bfs();
                     }
                 }
-                if(k == 0) break;
             }
 
             sb.append(cnt + "\n");
@@ -61,7 +60,7 @@ public class Main {
                 if(nx < 0 || ny < 0 || nx >= n || ny >= m) continue;
                 if(graph[nx][ny] == 1) {
                     q.offer(new int[] {nx, ny});
-                    graph[nx][ny] = 0; k--;
+                    graph[nx][ny] = 0;
                 }
             }
         }

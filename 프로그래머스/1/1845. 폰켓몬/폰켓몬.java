@@ -1,14 +1,13 @@
 import java.util.*;
 class Solution {
     public int solution(int[] nums) {
-        int max = nums.length / 2;
-        
         Set<Integer> set = new HashSet<>();
-        for(int i : nums) {
-            set.add(i);
+        for(int num : nums) {
+            set.add(num);
         }
         
-        if(max >= set.size()) return set.size();
+        int max = nums.length / 2;
+        if(set.size() < max) return set.size();
         else return max;
     }
 }

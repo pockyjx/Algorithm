@@ -1,6 +1,6 @@
 # [level 4] 5월 식품들의 총매출 조회하기 - 131117 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/131117?language=mysql) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/131117) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2023년 11월 4일 14:22:51
+2024년 06월 11일 20:18:07
 
 ### 문제 설명
 

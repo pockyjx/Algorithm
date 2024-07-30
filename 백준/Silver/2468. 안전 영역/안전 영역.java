@@ -36,7 +36,7 @@ public class Main {
 			for(int j=0;j<n;j++) {
 				for(int k=0;k<n;k++) {
 					if(!isVisit[j][k] && graph[j][k] > i) {
-						bfs(j, k, i);
+						dfs(j, k, i);
 						cnt++;
 					}
 				}
@@ -48,26 +48,15 @@ public class Main {
 		System.out.println(answer);
 	}
 
-	static void bfs(int x, int y, int h) {
-		Queue<int[]> q = new LinkedList<>();
-		q.offer(new int[] {x, y});
+	static void dfs(int x, int y, int h) {
 		isVisit[x][y] = true;
 
-		while(!q.isEmpty()) {
-			int[] p = q.poll();
-			int px = p[0]; int py = p[1];
+		for(int i=0;i<4;i++) {
+			int nx = x + dx[i];
+			int ny = y + dy[i];
 
-			for(int i=0;i<4;i++) {
-				int nx = px + dx[i];
-				int ny = py + dy[i];
-
-				if(nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
-
-				if(!isVisit[nx][ny] && graph[nx][ny] > h) {
-					q.offer(new int[] {nx, ny});
-					isVisit[nx][ny] = true;
-				}
-			}
+			if(nx < 0 || ny < 0 || nx >= n || ny >= n) continue;
+			if(!isVisit[nx][ny] && graph[nx][ny] > h) dfs(nx, ny, h);
 		}
 	}
-}
+} 

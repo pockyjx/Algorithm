@@ -1,55 +1,44 @@
+import java.util.*;
 class Solution {
     public int solution(String dartResult) {
-
-        int[] score = new int[3]; // 점수
-        char[] bonus = new char[3]; // 보너스
-        char[] option = new char[3]; // 옵션
-        
+        int[] score = new int[3];
         int idx = 0;
-        for(int i=0;i<3;i++) {
-            score[i] = dartResult.charAt(idx++) - 48;
-            if(dartResult.charAt(idx) == '0') {
-                score[i] = 10; idx++;
+        
+        for(int i=0;i<dartResult.length();i++) {
+            char ch = dartResult.charAt(i);
+            
+            // 점수
+            if(Character.isDigit(ch)) {
+                if(ch == '1' && dartResult.charAt(i+1) == '0') {
+                    score[idx++] = 10; i++;
+                } else {
+                    score[idx++] = ch - '0';
+                }
             }
             
-            bonus[i] = dartResult.charAt(idx++);
-            
-            if(idx < dartResult.length() && dartResult.charAt(idx) == '*') {
-                option[i] = '*'; idx++;
-            } else if(idx < dartResult.length() && dartResult.charAt(idx) == '#') {
-                option[i] = '#'; idx++; 
+            // 보너스 & 옵션
+            switch(ch) {
+                case 'D' : 
+                    score[idx-1] = (int) Math.pow(score[idx-1], 2); break;
+                    
+                case 'T' : 
+                    score[idx-1] = (int) Math.pow(score[idx-1], 3); break;
+                    
+                case '*' : 
+                    if(idx - 2 >= 0) score[idx-2] *= 2;
+                    score[idx-1] *= 2; 
+                    break;
+                    
+                case '#' :
+                    score[idx-1] *= -1;
             }
-        }
-    
-        int answer = 0;
-        for(int i=0;i<3;i++) {
-            
-            System.out.print(score[i] + " ");
-            
-            switch(bonus[i]) {
-                case 'D' : score[i] *= score[i]; break;
-                case 'T' : score[i] *= score[i] * score[i]; break;
-            }
-            
-            System.out.print(bonus[i] + " " + score[i] + " " + option[i] + " ");
-            
-            if(option[i] == '*') {
-                score[i] *= 2;
-                answer += score[i];
-                
-                if(i - 1 >= 0) answer += score[i-1];
-            } 
-            
-            else if(option[i] == '#') {
-                score[i] *= -1;
-                answer += score[i];
-            } 
-            
-            else {
-                answer += score[i];
-            } 
         }
         
-        return answer;
+        int total = 0;
+        for(int i=0;i<3;i++) {
+            total += score[i];
+        }
+        
+        return total;
     }
 }

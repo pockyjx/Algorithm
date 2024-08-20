@@ -14,8 +14,7 @@ class Solution {
         answer = answer.replaceAll("^[.]|[.]$", "");
         
         // 5단계
-        if(answer.isEmpty()) 
-            answer = "a";
+        if(answer.length() == 0) answer = "a";
         
         // 6단계
         if(answer.length() > 15) {
@@ -24,9 +23,11 @@ class Solution {
         }
         
         // 7단계
-        while(answer.length() <= 2) {
+        while(answer.length() < 3) {
             answer += answer.charAt(answer.length()-1);
         }
+        
+        System.out.println(answer);
         return answer;
     }
 }

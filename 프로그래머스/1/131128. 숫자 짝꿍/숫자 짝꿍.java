@@ -1,30 +1,29 @@
 import java.util.*;
 class Solution {
     public String solution(String X, String Y) {
-
         int[] x = new int[10];
         int[] y = new int[10];
         
         for(int i=0;i<X.length();i++) {
-            x[X.charAt(i) - 48]++;
+            x[X.charAt(i) - '0']++;
         }
         
         for(int i=0;i<Y.length();i++) {
-            y[Y.charAt(i) - 48]++;
+            y[Y.charAt(i) - '0']++;
         }
         
-        StringBuilder sb = new StringBuilder();
+        // String answer = ""; // 시간 초과..
+        StringBuilder answer = new StringBuilder();
         for(int i=9;i>=0;i--) {
-            while(x[i] >= 1 && y[i] >= 1) {
-                x[i]--;
-                y[i]--;
-                
-                sb.append(i);
+            while(x[i] > 0 && y[i] > 0) {
+                //answer += i;
+                answer.append(i);
+                x[i]--; y[i]--;
             }
         }
-        
-        if(sb.length() == 0) return "-1";
-        else if(sb.charAt(0) == '0') return "0";
-        return sb.toString();
+            
+        if(answer.length() == 0) return "-1";
+        else if(answer.charAt(0) == '0') return "0";
+        else return answer.toString();
     }
 }

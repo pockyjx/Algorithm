@@ -1,12 +1,11 @@
 class Solution {
     public String solution(int[] numbers, String hand) {
-        
-        StringBuilder answer = new StringBuilder();;
+        StringBuilder answer = new StringBuilder();
         int left = 10; // *
         int right = 12; // #
         
         for(int n : numbers) {
-            if(n == 1 | n == 4 || n == 7) {
+            if(n == 1 || n == 4 || n == 7) {
                 left = n;
                 answer.append("L");
             }
@@ -19,15 +18,15 @@ class Solution {
             else {
                 if(n == 0) n = 11;
                 
-                int l = (Math.abs(n-left) / 3) + (Math.abs(n-left) % 3);
-                int r = (Math.abs(n-right) / 3) + (Math.abs(n-right) % 3);
+                int ld = (Math.abs(n-left) / 3) + (Math.abs(n-left) % 3);
+                int rd = (Math.abs(n-right) / 3) + (Math.abs(n-right) % 3);
                 
-                if(l > r) {
+                if(ld > rd) {
                     right = n;
                     answer.append("R");
                 }
                 
-                else if(l < r) {
+                else if(ld < rd) {
                     left = n;
                     answer.append("L");
                 }

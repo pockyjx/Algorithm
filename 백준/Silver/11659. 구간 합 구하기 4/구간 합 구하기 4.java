@@ -4,6 +4,7 @@ import java.util.*;
 public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		StringTokenizer st;
 
 		st = new StringTokenizer(br.readLine());
@@ -23,7 +24,11 @@ public class Main {
 			int start = Integer.parseInt(st.nextToken());
 			int end = Integer.parseInt(st.nextToken());
 
-			System.out.println(num[end] - num[start-1]);
+			bw.write((num[end] - num[start-1]) + "\n");
 		}
+
+		bw.flush();
+		bw.close();
+		br.close();
 	}
 }

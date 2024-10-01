@@ -1,10 +1,9 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
 public class Main {
-
+	static int blue, white;
 	static int[][] paper;
-	static int white = 0, blue = 0;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -15,42 +14,40 @@ public class Main {
 
 		for(int i=0;i<n;i++) {
 			st = new StringTokenizer(br.readLine());
+
 			for(int j=0;j<n;j++) {
 				paper[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
 
-		divided(0, 0, n);
+		divide(0, 0, n);
 		System.out.println(white);
 		System.out.println(blue);
 	}
 
-	static void divided(int x, int y, int n) {
+	static void divide(int x, int y, int n) {
 		if(check(x, y, n)) {
-			if(paper[x][y] == 0) {
-				white++;
-			}
-			else {
-				blue++;
-			}
+			if(paper[x][y] == 1) blue++;
+			else white++;
 			return;
 		}
 
 		int half = n / 2;
 
-		divided(x, y, half); // 2사분면
-		divided(x, y + half, half); // 3사분면
-		divided(x + half, y, half); // 1사분면
-		divided(x + half, y + half, half); // 4사분면
+		divide(x+half, y, half);
+		divide(x, y, half);
+		divide(x, y+half, half);
+		divide(x+half, y+half, half);
 	}
 
 	static boolean check(int x, int y, int n) {
+		int color = paper[x][y];
+
 		for(int i=x;i<x+n;i++) {
 			for(int j=y;j<y+n;j++) {
-				if(paper[i][j] != paper[x][y]) return false;
+				if(paper[i][j] != color) return false;
 			}
 		}
-
 		return true;
 	}
 }
